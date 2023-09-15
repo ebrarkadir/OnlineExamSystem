@@ -26,4 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\OnlineExamSystem.Core\OnlineExamSystem.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EntityFrameworkCore\Concrete\" />
+  </ItemGroup>
 </Project>
