@@ -12,13 +12,16 @@ namespace OnlineExamSystem.EntityFrameworkCore.Abstract
     {
         T GetByID(object id);
         Task<T> GetByIdAsync(object id);
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>filter = null);
+        IEnumerable<T> GetAll(
+            Expression<Func<T>> filter = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+            string includeProperties = "");
         public void Add(T entity);
-        Task<T> GetAllAsync(T entity);
-        public void Update(T entity);
-        Task<T> UpdateAsync(T entity);
-        public void Delete(T entity);
-        Task<T> DeleteAsync(T entity);
+        Task<T> AddAsync(T entity);
+        public void Update(T entityToUpdate);
+        Task<T> UpdateAsync(T entityToUpdate);
+        public void Delete(T entityToDelete);
+        Task<T> DeleteAsync(T entityToDelete);
         public void DeleteByID(object id);
 
     }

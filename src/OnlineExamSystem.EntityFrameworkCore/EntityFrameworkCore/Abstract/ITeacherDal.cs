@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExamSystem.EntityFrameworkCore.Abstract
 {
-    public interface ITeacherDal
+    public interface ITeacherDal : IEntityRepository<Teacher>
     {
 
     }

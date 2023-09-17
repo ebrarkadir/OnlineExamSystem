@@ -4,6 +4,7 @@ using OnlineExamSystem.EntityFrameworkCore.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,49 +26,79 @@ namespace OnlineExamSystem.EntityFrameworkCore.Concrete
             dbset.Add(entity);
         }
 
-        public void Delete(T entity)
+        public void Delete(T entityToDelete)
         {
-            throw new NotImplementedException();
+            if (_context.Entry(entityToDelete).State == EntityState.Detached)
+            {
+                dbset.Attach(entityToDelete);
+            }
+            dbset.Remove(entityToDelete);
         }
 
-        public Task<T> DeleteAsync(T entity)
+        public async Task<T> DeleteAsync(T entityToDelete)
         {
-            throw new NotImplementedException();
+            if (_context.Entry(entityToDelete).State == EntityState.Detached)
+            {
+                dbset.Attach(entityToDelete);
+            }
+            dbset.Remove(entityToDelete);
+            return entityToDelete;
         }
 
         public void DeleteByID(object id)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> GetAllAsync(T entity)
-        {
-            throw new NotImplementedException();
+            T entityToDelete = dbset.Find(id);
+            Delete(entityToDelete);
         }
 
         public T GetByID(object id)
         {
-            throw new NotImplementedException();
+            return dbset.Find(id);
         }
 
-        public Task<T> GetByIdAsync(object id)
+        public async Task<T> GetByIdAsync(object id)
         {
-            throw new NotImplementedException();
+            return await dbset.FindAsync(id);
         }
 
-        public void Update(T entity)
+        public void Update(T entityToUpdate)
         {
-            throw new NotImplementedException();
+            dbset.Attach(entityToUpdate);
+            _context.Entry(entityToUpdate).State = EntityState.Modified;
         }
 
-        public Task<T> UpdateAsync(T entity)
+        public async Task<T> UpdateAsync(T entityToUpdate)
         {
-            throw new NotImplementedException();
+            dbset.Attach(entityToUpdate);
+            _context.Entry(entityToUpdate).State= EntityState.Modified;
+            return entityToUpdate;
+        }
+
+        public async Task<T> AddAsync(T entity)
+        {
+            dbset.Add(entity);
+            return entity;
+        }
+
+        public IEnumerable<T> GetAll(Expression<Func<T>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
+        {
+            IQueryable<T> query = dbset;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+            foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+            if (orderBy!=null)
+            {
+                return orderBy(query).ToList();
+            }
+            else
+            {
+                return query.ToList();
+            }
         }
     }
 }
