@@ -1,4 +1,4 @@
-﻿using Abp.Domain.Entities;
+﻿using OnlineExamSystem.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExamSystem.EntityFrameworkCore.Abstract
 {
-    public interface IEntityRepository <T> where T : class, IEntity
+    public interface IEntityRepository <T> where T : class, IDataEntity
     {
         T GetByID(object id);
         Task<T> GetByIdAsync(object id);

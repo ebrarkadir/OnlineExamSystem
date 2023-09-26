@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using OnlineExamSystem.Data;
 using OnlineExamSystem.EntityFrameworkCore.Abstract;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExamSystem.EntityFrameworkCore.Concrete
 {
-    public class EfEntityRepositoryBase<T> : IEntityRepository<T> where T : class, IEntity, new()
+    public class EfEntityRepositoryBase<T> : IEntityRepository<T> where T : class, IDataEntity, new()
     {
         internal DbSet<T> dbset;
         private readonly OnlineExamSystemDbContext _context = null;
@@ -80,7 +81,9 @@ namespace OnlineExamSystem.EntityFrameworkCore.Concrete
             return entity;
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "")
+        public IEnumerable<T> GetAll(Expression<Func<T>> filter = null, 
+            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, 
+            string includeProperties = "")
         {
             IQueryable<T> query = dbset;
             if (filter != null)

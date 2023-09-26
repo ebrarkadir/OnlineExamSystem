@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExamSystem.Data
 {
-    public class Exam
+    public class Exam : IDataEntity
     {
         public int Id { get; set; }
         public string Title { get; set; }

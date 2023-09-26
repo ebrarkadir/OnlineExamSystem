@@ -31,19 +31,27 @@ namespace OnlineExamSystem.Web.Startup
                     )
                 ).AddItem(
                     new MenuItemDefinition(
-                        PageNames.Tenants,
-                        L("Tenants"),
-                        url: "Tenants",
-                        icon: "fas fa-building",
-                        permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Tenants)
-                    )
-                ).AddItem(
-                    new MenuItemDefinition(
                         PageNames.Users,
                         L("Users"),
                         url: "Users",
                         icon: "fas fa-users",
                         permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Users)
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Exams,
+                        L("Exams"),
+                        url: "Exams",
+                        icon: "fas fa-pen",
+                        requiresAuthentication: true
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Departments,
+                        L("Departments"),
+                        url: "Departments",
+                        icon: "fas fa-book",
+                        requiresAuthentication: true
                     )
                 ).AddItem(
                     new MenuItemDefinition(

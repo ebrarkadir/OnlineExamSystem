@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExamSystem.Data
 {
-    public class Question
+    public class Question :IDataEntity
     {
         public int Id { get; set; }
         public string Text { get; set; }
@@ -14,4 +14,6 @@ namespace OnlineExamSystem.Data
         public Exam Exams { get; set; }
         public ICollection<Choise> Choices { get; set; }
     }
+
+    /// formData.append("Text",textBoxQuestions);
 }

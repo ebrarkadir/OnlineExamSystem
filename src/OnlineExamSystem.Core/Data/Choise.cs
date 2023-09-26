@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Abp.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace OnlineExamSystem.Data
 {
     
-    public class Choise
+    public class Choise : IDataEntity
     {
         public int Id { get; set; }
         public string Text { get; set; }
