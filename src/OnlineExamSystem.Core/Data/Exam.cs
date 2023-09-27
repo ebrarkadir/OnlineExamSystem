@@ -13,6 +13,6 @@ namespace OnlineExamSystem.Data
         public int DepartmentId { get; set; }
         public Department Department { get; set; }
         public int TeacherId { get; set; }
-        public ICollection<Choise> Choices { get; set; }
+        public ICollection<Question> Questions { get; set; }
     }
 }

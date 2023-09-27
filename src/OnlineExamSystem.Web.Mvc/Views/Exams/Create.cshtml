@@ -1,0 +1,73 @@
+﻿@using OnlineExamSystem.Business.Concrete;
+
+@model ExamDto
+
+@{
+    ViewBag.Title = "Yeni Sınav Oluştur";
+}
+
+<h2>Yeni Sınav Oluştur</h2>
+
+@using (Html.BeginForm("Create", "Exams", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TeacherId, htmlAttributes: new { @class = "control-label" })
+        @Html.EditorFor(model => model.TeacherId, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.TeacherId, "", new { @class = "text-danger" })
+    </div>
+
+    <h3>Soru Listesi</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Soru Metni</th>
+                <th>Seçenekler</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Questions.Count; i++)
+            {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(model => model.Questions[i].Text)
+                        @Html.DisplayFor(model => model.Questions[i].Text)
+                    </td>
+                    <td>
+                        @foreach (var choice in Model.Questions[i].Choices)
+                        {
+                            <div>
+                                @Html.HiddenFor(model => model.Questions[i].Choices.ElementAt(0).Text)
+                                @Html.DisplayFor(model => model.Questions[i].Choices.ElementAt(0).Text)
+                                @Html.HiddenFor(model => model.Questions[i].Choices.ElementAt(0).IsCorrect)
+                                @Html.DisplayFor(model => model.Questions[i].Choices.ElementAt(0).IsCorrect)
+                            </div>
+                            <div>
+                                @Html.HiddenFor(model => model.Questions[i].Choices.ElementAt(1).Text)
+                                @Html.DisplayFor(model => model.Questions[i].Choices.ElementAt(1).Text)
+                                @Html.HiddenFor(model => model.Questions[i].Choices.ElementAt(1).IsCorrect)
+                                @Html.DisplayFor(model => model.Questions[i].Choices.ElementAt(1).IsCorrect)
+                            </div>
+                            <!-- Daha fazla seçenek eklemek için gerektiği kadar bu bloğu tekrarlayabilirsiniz -->
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="form-group">
+        <input type="submit" value="Sınavı Oluştur" class="btn btn-primary" />
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Geri Dön", "Index")
+</div>

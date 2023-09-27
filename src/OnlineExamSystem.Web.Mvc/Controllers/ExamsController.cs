@@ -2,8 +2,13 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineExamSystem.Authorization;
+using OnlineExamSystem.Business.Abstract;
+using OnlineExamSystem.Business.Concrete;
 using OnlineExamSystem.Controllers;
+using OnlineExamSystem.Data;
 using OnlineExamSystem.Users;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OnlineExamSystem.Web.Controllers
 {
@@ -11,10 +16,12 @@ namespace OnlineExamSystem.Web.Controllers
     public class ExamsController : OnlineExamSystemControllerBase
     {
         private readonly IUserAppService _userAppService;
+        private readonly IExamManager _examManager;
 
-        public ExamsController(IUserAppService userAppService)
+        public ExamsController(IUserAppService userAppService, IExamManager examManager)
         {
             _userAppService = userAppService;
+            _examManager = examManager;
         }
 
         // GET: ExamsController
@@ -38,16 +45,10 @@ namespace OnlineExamSystem.Web.Controllers
         // POST: ExamsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ExamDto examDto)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _examManager.AddExam(examDto);
+            return View();
         }
 
         // GET: ExamsController/Edit/5
