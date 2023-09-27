@@ -1,4 +1,7 @@
-﻿using OnlineExamSystem.Data;
+﻿using Abp.Application.Services;
+using Abp.Domain.Repositories;
+using OnlineExamSystem.Data;
+using OnlineExamSystem.Dtos;
 using OnlineExamSystem.EntityFrameworkCore.Abstract;
 using System;
 using System.Collections.Generic;
@@ -8,19 +11,7 @@ using System.Threading.Tasks;
 
 namespace OnlineExamSystem.Business
 {
-    public class ExamsManager
+    public class ExamsManager 
     {
-
-        IExamDal _examDal;
-        public ExamsManager(IExamDal examDal)
-        {
-            _examDal = examDal;   
-        }
-        public void createExam(List<Question> Questions)
-        {
-            // if business rule is success
-            
-
-        }
     }
 }

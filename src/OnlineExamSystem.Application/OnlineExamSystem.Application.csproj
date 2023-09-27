@@ -15,7 +15,4 @@
     <ProjectReference Include="..\OnlineExamSystem.Core\OnlineExamSystem.Core.csproj" />
     <ProjectReference Include="..\OnlineExamSystem.EntityFrameworkCore\OnlineExamSystem.EntityFrameworkCore.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dtos\" />
-  </ItemGroup>
 </Project>

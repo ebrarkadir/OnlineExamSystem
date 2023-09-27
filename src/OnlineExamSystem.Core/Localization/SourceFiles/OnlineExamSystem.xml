@@ -2,6 +2,9 @@
 <localizationDictionary culture="en">
   <texts>
     <text name="HomePage" value="Home page" />
+	<text name="Exams" value="Exams" />
+	<text name="ExamStarts" value="ExamStart" />
+	<text name="Departments" value="Departments" />
     <text name="About" value="About" />
     <text name="WelcomeMessage" value="Welcome to OnlineExamSystem!" />
     <text name="FormIsNotValidMessage" value="Form is not valid. Please check and fix errors." />

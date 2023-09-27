@@ -14,6 +14,8 @@ namespace OnlineExamSystem.Authorization
         public const string Pages_Teacher = "Pages.Teacher";
         public const string Pages_Teacher_Create = "Pages.Teacher.Create";
 
+        public const string Pages_ExamStarts = "Pages.ExamStarts";
+
         public const string Pages_Exams = "Pages.Exam";
         public const string Pages_Exams_Create = "Pages.Exam.Create";
         public const string Pages_Exams_Update = "Pages.Exam.Update";

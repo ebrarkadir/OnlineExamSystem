@@ -47,6 +47,14 @@ namespace OnlineExamSystem.Web.Startup
                     )
                 ).AddItem(
                     new MenuItemDefinition(
+                        PageNames.ExamStarts,
+                        L("ExamStarts"),
+                        url: "ExamStarts",
+                        icon: "fas fa-pen",
+                        requiresAuthentication: true
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
                         PageNames.Departments,
                         L("Departments"),
                         url: "Departments",

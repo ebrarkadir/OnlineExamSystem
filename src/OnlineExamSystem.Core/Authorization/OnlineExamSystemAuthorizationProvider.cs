@@ -18,7 +18,8 @@ namespace OnlineExamSystem.Authorization
             context.CreatePermission(PermissionNames.Pages_Exams_Create, L("ExamsCreate"));
             context.CreatePermission(PermissionNames.Pages_Exams_Update, L("ExamsUpdate"));
             context.CreatePermission(PermissionNames.Pages_Exams_Delete, L("ExamDelete"));
-            context.CreatePermission(PermissionNames.Pages_Departments, L("Departmenst"));
+            context.CreatePermission(PermissionNames.Pages_Departments, L("Departments"));
+            context.CreatePermission(PermissionNames.Pages_ExamStarts, L("ExamStart"));
         }
 
         private static ILocalizableString L(string name)

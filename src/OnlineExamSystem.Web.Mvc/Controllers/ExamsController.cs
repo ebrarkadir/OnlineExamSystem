@@ -3,12 +3,20 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnlineExamSystem.Authorization;
 using OnlineExamSystem.Controllers;
+using OnlineExamSystem.Users;
 
 namespace OnlineExamSystem.Web.Controllers
 {
     [AbpMvcAuthorize(PermissionNames.Pages_Exams)]
     public class ExamsController : OnlineExamSystemControllerBase
     {
+        private readonly IUserAppService _userAppService;
+
+        public ExamsController(IUserAppService userAppService)
+        {
+            _userAppService = userAppService;
+        }
+
         // GET: ExamsController
         public ActionResult Index()
         {
