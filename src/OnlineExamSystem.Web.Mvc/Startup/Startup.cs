@@ -21,7 +21,9 @@ using Abp.Json;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.WebEncoders;
 using Newtonsoft.Json.Serialization;
-
+using OnlineExamSystem.Business.Concrete;
+using OnlineExamSystem.EntityFrameworkCore.Abstract;
+using Autofac;
 
 namespace OnlineExamSystem.Web.Startup
 {
@@ -35,6 +37,7 @@ namespace OnlineExamSystem.Web.Startup
             _hostingEnvironment = env;
             _appConfiguration = env.GetAppConfiguration();
         }
+        
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -54,6 +57,7 @@ namespace OnlineExamSystem.Web.Startup
                         NamingStrategy = new CamelCaseNamingStrategy()
                     };
                 });
+
 
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
@@ -79,7 +83,10 @@ namespace OnlineExamSystem.Web.Startup
                 )
             );
         }
-
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterType<ExamManager>().As<IExamDal>().InstancePerDependency();
+        }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseAbp(); // Initializes ABP framework.

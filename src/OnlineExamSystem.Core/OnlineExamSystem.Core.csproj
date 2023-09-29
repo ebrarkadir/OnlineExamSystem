@@ -17,6 +17,9 @@
   <ItemGroup>
     <PackageReference Include="Abp.AutoMapper" Version="8.1.0" />
     <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="8.1.0" />
+    <PackageReference Include="Autofac" Version="7.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="7.1.0" />
     <PackageReference Include="Castle.Windsor.MsDependencyInjection" Version="3.4.0" />
   </ItemGroup>
 </Project>

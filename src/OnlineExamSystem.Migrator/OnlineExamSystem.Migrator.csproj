@@ -16,6 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Abp.Castle.Log4Net" Version="8.1.0" />
+    <PackageReference Include="Autofac" Version="7.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OnlineExamSystem.Core\OnlineExamSystem.Core.csproj" />

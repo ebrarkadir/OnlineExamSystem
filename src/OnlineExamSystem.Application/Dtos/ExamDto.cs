@@ -11,7 +11,8 @@ namespace OnlineExamSystem.Dtos
     [AutoMapFrom(typeof(Exam))]
     public class ExamDto : IDto
     {
-        public int Id { get; set; }
         public string Title { get; set; }
+        public int TeacherId { get; set; }
+        public List<QuestionDto> Questions { get; set; }
     }
 }
